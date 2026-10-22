@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#193c32">
+  <meta name="description" content="Shablam Squash. A friendly Cambridge squash ladder: challenge a friend, play a match, and climb the Elo rankings.">
+  <title>Shablam Squash · The Cambridge Ladder</title>
+  <link rel="icon" href="./assets/crest.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:wght@400;450;500;550;600;650;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./config.js"></script>
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+  <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+    <symbol id="i-crown" viewBox="0 0 24 24"><path d="m3 7 4 4 5-7 5 7 4-4-2 12H5L3 7Zm3 9h12"/></symbol>
+    <symbol id="i-racket" viewBox="0 0 24 24"><ellipse cx="14.5" cy="8" rx="5.5" ry="7" transform="rotate(35 14.5 8)"/><path d="m11 14-7 8m5-10 3 3m0-13 6 9m-8-6 8 4m-4-7-3 10m6-9-3 10"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 8a9 9 0 1 0 0 8M20 3v6h-6"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m8 5 7 7-7 7"/></symbol>
+  </svg>
+  <a class="skip-link" href="#main">Skip to the ladder</a>
+  <div class="topline"><div class="shell topline-inner"><span>CAMBRIDGE, ENGLAND</span><span class="topline-motto">A little competition. Rather good company.</span><span>EST. MMXXVI</span></div></div>
+  <header class="site-header shell">
+    <a class="brand" href="#ladder" aria-label="Shablam Squash home"><img src="./assets/crest.svg" alt="" width="50" height="60"><span><strong>Shablam Squash</strong><small>THE CAMBRIDGE LADDER</small></span></a>
+    <nav aria-label="Main navigation">
+      <a href="#ladder" data-nav="ladder" class="active">The ladder</a>
+      <a href="#challenges" data-nav="challenges">Challenges <span id="nav-count" class="nav-count">0</span></a>
+      <a href="#ledger" data-nav="ledger">Match ledger</a>
+      <button type="button" class="nav-link" data-action="rules">Club rules</button>
+    </nav>
+    <button type="button" class="member-button" data-action="account" id="member-button"><span class="avatar avatar-small">S</span><span>Club member</span><span class="member-chevron">⌄</span></button>
+  </header>
+  <main id="main" class="shell">
+    <div id="mode-banner" class="mode-banner" role="status" hidden></div>
+    <h1 class="sr-only">Shablam Squash club ladder</h1>
+    <div class="club-intro">
+      <p class="club-description">A friendly ladder for some fierce competition. Challenge a friend, settle it on court, and see where you stand.</p>
+      <div class="club-actions" role="group" aria-label="Match actions">
+        <button class="button button-primary" data-action="challenge"><svg class="icon"><use href="#i-racket"/></svg>Issue a challenge<svg class="icon arrow"><use href="#i-arrow"/></svg></button>
+        <button class="button button-outline" data-action="result"><svg class="icon"><use href="#i-plus"/></svg>Record a result</button>
+      </div>
+    </div>
+    <section class="stats-strip" aria-label="Club at a glance" id="stats-strip"><div><span class="stat-label">IN THE CLUB</span><strong>— <small>members</small></strong></div><div><span class="stat-label">ON THE RECORD</span><strong>— <small>matches played</small></strong></div><div><span class="stat-label">THE GAUNTLET IS DOWN</span><strong>— <small>open challenges</small></strong></div><div><span class="stat-label">TOP OF THE LADDER</span><strong>—</strong></div></section>
+    <div class="dashboard">
+      <section class="main-board" aria-labelledby="board-heading">
+        <div class="section-heading"><div><p class="eyebrow" id="board-kicker">THE CURRENT PECKING ORDER</p><h2 id="board-heading">The club ladder<span>.</span></h2></div><button type="button" class="icon-button" data-action="refresh" aria-label="Refresh club data" title="Refresh club data"><svg class="icon"><use href="#i-refresh"/></svg></button></div>
+        <div class="board-toolbar"><div class="view-tabs" role="group" aria-label="Board view"><button data-view="ladder" class="selected" aria-pressed="true">Rankings</button><button data-view="challenges" aria-pressed="false">Challenges</button><button data-view="ledger" aria-pressed="false">Results</button></div><label class="search-field"><svg class="icon"><use href="#i-search"/></svg><input type="search" id="search" placeholder="Find a player" aria-label="Search players, challenges or results"></label></div>
+        <div id="board-content" aria-live="polite"><p class="empty-state">Opening the club ledger…</p></div>
+        <div class="board-footer"><span id="board-footer-text">Elo ratings · Starting at 1,200 · K-factor 32</span><button type="button" class="text-button" data-action="rules">How it works <svg class="icon"><use href="#i-arrow"/></svg></button></div>
+      </section>
+      <aside class="sidebar" aria-label="Club noticeboard"><section class="noticeboard"><p class="eyebrow">A WORD AROUND THE CLUB</p><h2>The noticeboard</h2><div class="small-rule"><span>✦</span></div><div id="notices"></div><button type="button" class="noticeboard-link" data-view="challenges">View all challenges <svg class="icon"><use href="#i-arrow"/></svg></button></section><section class="elo-note"><span class="eyebrow">A FAMILIAR SYSTEM</span><h3>Chess ratings.<br><em>Squash rackets.</em></h3><p>Beat a stronger player, climb a little further. Every confirmed match counts. Every rivalry starts somewhere.</p><button type="button" class="text-button" data-action="rules">A brief introduction to Elo <svg class="icon"><use href="#i-arrow"/></svg></button></section></aside>
+    </div>
+    <section class="club-invitation"><span class="invitation-mark">✦</span><div><h2>Room for one more rivalry.</h2><p>The best ladders are built among friends. Bring yours to the court.</p></div><button type="button" class="button button-outline" data-action="invite">Invite a friend <svg class="icon"><use href="#i-arrow"/></svg></button></section>
+  </main>
+  <footer class="site-footer"><div class="skyline" aria-hidden="true"></div><div class="shell footer-inner"><div><span class="footer-brand">Shablam Squash</span><p>A Cambridge tradition in the making.</p></div><span class="footer-motto">Play fairly. Shake hands. Come back for the rematch.</span><button type="button" class="text-button" data-action="export"><svg class="icon"><use href="#i-download"/></svg>Export match ledger</button></div></footer>
+  <dialog id="modal" aria-labelledby="modal-title"><div class="modal-top"><span class="eyebrow">SHABLAM SQUASH</span><button type="button" class="icon-button" data-action="close" aria-label="Close dialog"><svg class="icon"><use href="#i-close"/></svg></button></div><div id="modal-content"></div></dialog>
+  <div id="toast" role="status" class="toast" hidden></div>
+  <noscript><p class="noscript">Please enable JavaScript to use the squash ladder.</p></noscript>
+</body>
+</html>
