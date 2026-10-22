@@ -2,6 +2,6 @@
 window.SHABLAM_CONFIG = Object.freeze({
   clubName: 'Shablam Squash',
   location: 'Cambridge, England',
-  supabaseUrl: '',
-  supabasePublishableKey: '',
+  supabaseUrl: 'https://nxvvjspirdauumxagdcd.supabase.co',
+  supabasePublishableKey: 'sb_publishable_2DjvMGSALyqcf6AgthmYPg_fPWXbq0x',
 });
